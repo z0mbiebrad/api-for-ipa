@@ -5,25 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Brewery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Services\WeatherAPI;
+use App\Services\CoordinatesAPI;
+
 
 class BreweryController extends Controller
 {
-    protected $weatherController;
-
-    public function __construct(WeatherController $weatherController)
-    {
-        $this->weatherController = $weatherController;
-    }
     public function index(Request $request)
     {
+        $coordinatesAPI = new CoordinatesAPI();
+        $weatherApi = new WeatherAPI();
+
         $cityQuery = $request->input('city_query');
         $stateQuery = $request->input('state_query');
+
+        $coordinates = $coordinatesAPI->getCoordinates($cityQuery,$stateQuery);
+
+        $lon = $coordinates[0];
+        $lat = $coordinates[1];
+        $weather = $weatherApi->getWeather($lon, $lat);
+
         $queryResponse = Http::get('https://api.openbrewerydb.org/v1/breweries?by_city=' . $cityQuery . '&by_state=' . $stateQuery);
         $breweriesArray = json_decode($queryResponse);
-        $this->weatherController->__invoke($cityQuery, $stateQuery);
-        dd($breweriesArray);
 
-        return view('breweries.index');
+        return view('breweries.index', []);
     }
 
     /**
