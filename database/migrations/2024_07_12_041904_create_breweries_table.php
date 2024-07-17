@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('breweries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text("brew_id")->nullable();
+            $table->text("name")->nullable();
+            $table->text("city")->nullable();
+            $table->text("country")->nullable();
+            $table->text("phone")->nullable();
+            $table->text("website_url")->nullable();
+            $table->text("state")->nullable();
+            $table->text("street")->nullable();
         });
     }
 
