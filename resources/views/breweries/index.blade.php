@@ -34,13 +34,18 @@
                     </div>
                 @endforeach --}}
             </div>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @foreach ($breweries as $brewery)
+            @foreach ($breweries as $brewery)
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-4">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
                         <p>{{ $brewery->name }}</p>
-                    @endforeach
+                        <p>{{ $brewery->phone }}</p>
+                        <p>{{ $brewery->website_url }}</p>
+                        <p>{{ $brewery->street }}</p>
+                        <p>{{ $brewery->city }}</p>
+                        <p>{{ $brewery->state }}</p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
 
 
