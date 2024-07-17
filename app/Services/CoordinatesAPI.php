@@ -16,7 +16,7 @@ class CoordinatesAPI
         
         $lon = $coordinates->features[0]->properties->lon;
         $lat = $coordinates->features[0]->properties->lat;
-
+            
         return [$lon, $lat];
     }
 }

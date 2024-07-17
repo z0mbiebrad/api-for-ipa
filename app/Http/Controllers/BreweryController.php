@@ -3,32 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brewery;
+use App\Services\WeatherAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Services\WeatherAPI;
-use App\Services\CoordinatesAPI;
+use Carbon\Carbon;
 
 
 class BreweryController extends Controller
 {
     public function index(Request $request)
     {
-        $coordinatesAPI = new CoordinatesAPI();
-        $weatherApi = new WeatherAPI();
-
+        // Store current time in session
+$a = Carbon::now();
+dd ($a);
+        $weatherAPI = new WeatherAPI();
         $cityQuery = $request->input('city_query');
         $stateQuery = $request->input('state_query');
-
-        $coordinates = $coordinatesAPI->getCoordinates($cityQuery,$stateQuery);
-
-        $lon = $coordinates[0];
-        $lat = $coordinates[1];
-        $weather = $weatherApi->getWeather($lon, $lat);
-
+        $request->session()->put([
+            'city_query' => $cityQuery,
+            'state_query' => $stateQuery,
+        ]);
+        $weatherAPI->getWeather($cityQuery, $stateQuery);
         $queryResponse = Http::get('https://api.openbrewerydb.org/v1/breweries?by_city=' . $cityQuery . '&by_state=' . $stateQuery);
-        $breweriesArray = json_decode($queryResponse);
+        $breweries = json_decode($queryResponse);
 
-        return view('breweries.index', []);
+        return view('breweries.index', ['breweries' => $breweries]);
     }
 
     /**
