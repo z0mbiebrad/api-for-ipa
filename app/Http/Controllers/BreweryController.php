@@ -39,6 +39,7 @@ class BreweryController extends Controller
                 'street' => $brewery->street,
             ]);
         }
+        dd($breweries, 1);
  
 
         return view('breweries.index', ['breweries' => $breweries]);
