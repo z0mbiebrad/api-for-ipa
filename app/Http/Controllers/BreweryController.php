@@ -28,7 +28,7 @@ class BreweryController extends Controller
         $breweries = json_decode($queryResponse);
 
         foreach ($breweries as $brewery) {
-            $breweries[] = Brewery::updateOrCreate([
+            Brewery::updateOrCreate([
                 'brew_id' => $brewery->id,
                 'name' => $brewery->name,
                 'city' => $brewery->city,
@@ -39,9 +39,7 @@ class BreweryController extends Controller
                 'street' => $brewery->street,
             ]);
         }
-        dd($breweries, 1);
- 
-
+        
         return view('breweries.index', ['breweries' => $breweries]);
     }
 

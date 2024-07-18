@@ -37,7 +37,6 @@
                     </div>
                 @endforeach --}}
             </div>
-            @dd($breweries)
             @foreach ($breweries as $brewery)
                 @if ($brewery->phone)
                     @php
