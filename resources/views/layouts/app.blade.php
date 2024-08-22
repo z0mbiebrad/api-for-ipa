@@ -22,7 +22,6 @@
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 shadow-md shadow-[#023E7D]">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-white flex justify-between">
                     <div><i class="fa-regular fa-compass"></i></svg> Craft Beer Compass</div>
-                    <p class="text-lg text-right pr-1"><span id="current-time"></span></p>
                 </h2>
             </div>
         </header>
