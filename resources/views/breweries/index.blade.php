@@ -1,8 +1,3 @@
-{{-- @php
-    $weatherTenHour = array_slice($weather, 10, true);
-@endphp --}}
-
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -26,17 +21,6 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="flex overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-                {{-- @foreach ($weather as $weatherByTheHour)
-                    <div class="p-6 text-gray-900 dark:text-slate-200">
-                        <p>{{ date('H:i A', (int) $weatherByTheHour->dt) }}</p>
-                        <p>Temperature: {{ $weatherByTheHour->temp }}°</p>
-                        <p>Feels like:{{ $weatherByTheHour->feels_like }}°</p>
-                        <p>Humidity:{{ $weatherByTheHour->humidity }}°</p>
-                        <p>{{ ucWords($weatherByTheHour->weather[0]->description) }}</p>
-                    </div>
-                @endforeach --}}
-            </div>
             @foreach ($breweries as $brewery)
                 @if ($brewery->phone)
                     @php
@@ -45,7 +29,7 @@
                     @endphp
                     <div class="my-4 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-slate-200">
-                            <p class="text-red-100">{{ $brewery->name }}</p>
+                            <p class="text-red-300">{{ $brewery->name }}</p>
                             <p class=""><a href="tel:{{ $brewery->phone }}">{{ $brewery->phone }}</a></p>
                             <p class="text-blue-400"><a href="{{ $brewery->website_url }}">{{ $brewery->website_url }}</a></p>
                             <p><a href="http://maps.google.com/maps?q={{ $encodedAddress }}" target="_blank">
