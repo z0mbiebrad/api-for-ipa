@@ -9,9 +9,9 @@
                     @endphp
                     <div class="my-4 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-slate-200">
-                            <p class="text-red-300">{{ $brewery->name }}</p>
+                            <p class="">{{ $brewery->name }}</p>
                             <p><a href="tel:{{ $brewery->phone }}">{{ $brewery->phone }}</a></p>
-                            <p class="text-blue-400"><a href="{{ $brewery->website_url }}">{{ $brewery->website_url }}</a></p>
+                            <p class="""><a href="{{ $brewery->website_url }}">{{ $brewery->website_url }}</a></p>
                             <p><a href="http://maps.google.com/maps?q={{ $encodedAddress }}" target="_blank">{{ $address }}</a></p>
                         </div>
                     </div>
