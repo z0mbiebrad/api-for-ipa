@@ -13,33 +13,29 @@ class BreweryController extends Controller
 {
     public function index(Request $request)
     {
-//         // Store current time in session
-// $a = Carbon::now();
-// dd ($a);
-//         $weatherAPI = new WeatherAPI();
         $cityQuery = $request->input('city_query');
         $stateQuery = $request->input('state_query');
-//         $request->session()->put([
-//             'city_query' => $cityQuery,
-//             'state_query' => $stateQuery,
-//         ]);
-//         $weatherAPI->getWeather($cityQuery, $stateQuery);
+
         $queryResponse = Http::get('https://api.openbrewerydb.org/v1/breweries?by_city=' . $cityQuery . '&by_state=' . $stateQuery);
         $breweries = json_decode($queryResponse);
 
-        foreach ($breweries as $brewery) {
-            Brewery::updateOrCreate([
-                'brew_id' => $brewery->id,
-                'name' => $brewery->name,
-                'city' => $brewery->city,
-                'country' => $brewery->country,
-                'phone' => $brewery->phone,
-                'website_url' => $brewery->website_url,
-                'state' => $brewery->state,
-                'street' => $brewery->street,
-            ]);
+        if ($breweries) {
+            foreach ($breweries as $brewery) {
+                Brewery::updateOrCreate([
+                    'brew_id' => $brewery->id,
+                    'name' => $brewery->name,
+                    'city' => $brewery->city,
+                    'country' => $brewery->country,
+                    'phone' => $brewery->phone,
+                    'website_url' => $brewery->website_url,
+                    'state' => $brewery->state,
+                    'street' => $brewery->street,
+                ]);
+            }
+        } else {
+            return redirect()->route('welcome')->with('message', 'No breweries were found in this area, doesnt mean they dont exist! Just not in the database yet. Thanks!');
         }
-        
+
         return view('breweries.index', ['breweries' => $breweries]);
     }
 

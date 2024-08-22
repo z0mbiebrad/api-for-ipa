@@ -10,6 +10,11 @@
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-r">Search</button>
             </form>
             
+            @if (session('message'))
+                <div class="alert alert-info text-white text-center pt-8">
+                    {{ session('message') }}
+                </div>
+             @endif
         </div>
     </body>
 </x-app-layout>
@@ -17,7 +22,7 @@
 <script>
     function updateTime() {
         var now = new Date();
-        var hours = now.getHours();
+        var hours = now.getHours(); 
         var minutes = now.getMinutes();
         var seconds = now.getSeconds();
         var ampm = hours >= 12 ? 'PM' : 'AM';
