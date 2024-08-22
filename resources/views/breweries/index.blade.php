@@ -1,18 +1,37 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="pb-12">
+        <div class="mx-auto w-11/12 sm:max-w-7xl sm:px-6 lg:px-8">
             @foreach ($breweries as $brewery)
                 @if ($brewery->phone)
                     @php
                         $address = $brewery->street . ', ' . $brewery->city . ', ' . $brewery->state;
                         $encodedAddress = str_replace(' ', '+', $address);
                     @endphp
-                    <div class="my-4 overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-                        <div class="p-6 text-gray-900 dark:text-slate-200">
+                    <div class="my-4 overflow-hidden bg-white shadow-md shadow-[#023E7D] dark:bg-[#002855] sm:rounded-lg">
+                        <div class="p-6 text-gray-900 dark:text-white text-md sm:text-lg">
                             <p class="">{{ $brewery->name }}</p>
-                            <p><a href="tel:{{ $brewery->phone }}">{{ $brewery->phone }}</a></p>
-                            <p class="""><a href="{{ $brewery->website_url }}">{{ $brewery->website_url }}</a></p>
-                            <p><a href="http://maps.google.com/maps?q={{ $encodedAddress }}" target="_blank">{{ $address }}</a></p>
+                            <p>
+                                <i class="fa-solid fa-phone pr-1"></i>
+                                <a class="underline" href="tel:{{ $brewery->phone }}">
+                                    {{ $brewery->phone }}
+                                </a>
+                            </p>
+                            @if ($brewery->website_url)
+                                <p class="underline">
+                                    <i class="fa-solid fa-globe pr-1"></i>
+                                    <a href="{{ $brewery->website_url }}">
+                                        {{ $brewery->website_url }}
+                                    </a>
+                                </p>
+                            @endif
+                            @if ($address)
+                                <p>
+                                    <i class="fa-solid fa-map-pin pr-1"></i>
+                                    <a href="http://maps.google.com/maps?q={{ $encodedAddress }}"
+                                        target="_blank">{{ $address }}
+                                    </a>
+                                </p>
+                            @endif
                         </div>
                     </div>
                 @endif

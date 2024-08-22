@@ -16,18 +16,18 @@
 </head>
 
 <body class="font-sans antialiased bg-black">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100 dark:bg-[#001d3d]">
 
-        <header class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200 flex justify-between">
-                    <div><i class="fa-regular fa-compass" style="color: #ffffff;"></i></svg>Craft Beer Compass</div>
-                    <p class="text-lg text-right pr-1 text-white"><span id="current-time"></span></p>
+        <header class="bg-white dark:bg-[#002855]">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 shadow-md shadow-[#023E7D]">
+                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-white flex justify-between">
+                    <div><i class="fa-regular fa-compass"></i></svg> Craft Beer Compass</div>
+                    <p class="text-lg text-right pr-1"><span id="current-time"></span></p>
                 </h2>
             </div>
         </header>
 
-        <main>
+        <main class="bg-[#001d3d]">
             <x-brewery-form></x-brewery-form>
             {{ $slot }}
         </main>
