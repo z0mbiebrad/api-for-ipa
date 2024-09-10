@@ -19,7 +19,7 @@
     <div class="min-h-screen bg-gray-100 dark:bg-[#001d3d]">
 
         <header class="bg-white dark:bg-[#002855]">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 shadow-md shadow-[#023E7D]">
+            <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8 shadow-md shadow-[#023E7D]">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-white flex justify-between">
                     <div><i class="fa-regular fa-compass"></i></svg> Craft Beer Compass</div>
                 </h2>
